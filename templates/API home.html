@@ -1,0 +1,100 @@
+//templates/API home.html
+{% extends 'layout.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<h1 class="h2">Dashboard</h1>
+<p>Welcome back, {{ username }}!</p>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+
+  <div class="col-sm-10 ml-auto mr-auto ">
+        <H2>API Interaction History </H2>
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">id</th>
+                    <th scope="col">message</th>
+                    <th scope="col">phonenumber</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for entry in entries %}
+                        <tr>
+                            <th scope="row">{{loop.index}}</th>
+                                <td>{{ entry.message}}</td>
+                               <td>{{ entry.phonenumber}}</th
+                        </tr>
+                {% endfor %}
+        </tbody>
+        </table>
+      <div class="col-xs-10 col-sm-6 col-md-6">
+    <div class="card card-style mb-2">
+        <div class="card-body">
+            <div class="chart-container" style="position: relative;">
+           <canvas id="myChart" width="400" height="400"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+      {% block javascript %}
+      <script>
+
+      var ctx = document.getElementById('myChart').getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday','Saturday'],
+        datasets: [{
+            label: ' number of messages ',
+            data: [12, 19, 3, 5, 2, 3, 15],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(255,99, 71, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(163, 163, 163,1)',
+                'rgba(163, 163, 163,1)'
+
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+
+
+</script>
+
+
+{% endblock%}
+
+{% endblock%}
+
+
+
+
+
+
+
