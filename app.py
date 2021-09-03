@@ -200,7 +200,7 @@ def Get_Token():
     auth = request.authorization
 
     if auth and auth.password == 'Token':
-        token = jwt.encode({'user': auth.username, 'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=1440)},
+        token = jwt.encode({'user': auth.username, 'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=525600)},
                            app.config['SECRET_KEY'])
 
         return jsonify({'token': token})
